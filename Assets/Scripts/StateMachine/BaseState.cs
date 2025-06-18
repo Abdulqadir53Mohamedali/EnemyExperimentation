@@ -4,7 +4,7 @@ namespace FSM
 {
     public abstract class BaseState : IState
     {
-        protected readonly PlayerMovement player;
+        protected readonly PlayerController player;
         protected readonly Animator animator;
 
         // hashes used to represent an aniamtion in the animator
@@ -16,7 +16,7 @@ namespace FSM
 
         protected const float crossFadeDuration = 0.1f;
 
-        protected BaseState(PlayerMovement player, Animator animator)
+        protected BaseState(PlayerController player, Animator animator)
         {
             this.player = player;
             this.animator = animator;   
