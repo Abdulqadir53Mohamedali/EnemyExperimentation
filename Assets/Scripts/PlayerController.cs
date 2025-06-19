@@ -1,107 +1,130 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+namespace EnemyExperimentation
 {
-    public Rigidbody m_rigidbody;
-    public float m_moveSpeed = 5f;
-    [SerializeField] private Transform m_CameraTransform;
-
-    private Vector2 m_movementInput;
-    public InputActionReference m_movementActionReference;
-    public InputActionReference m_JumpActionReference;
-
-    public bool m_isGrounded;
-    private float jumpRaycastDistance = 0.2f;
-    [SerializeField] private float m_jumpForce = 5f;
-    private float m_jumpCount = 1f;
-    private float m_maxJumpCount = 2f;
-
-    public Transform jumpPoint;
-    //private bool wasGrounded = false; // Add this as a class-level variable
-    [SerializeField] private LayerMask groundLayer;
-
-
-    private void Update()
+    public class PlayerController : MonoBehaviour
     {
-        m_movementInput = m_movementActionReference.action.ReadValue<Vector2>();
-    }
+        public Rigidbody m_rigidbody;
+        public Animator m_animator;
+        public float m_moveSpeed = 5f;
+        [SerializeField] private Transform m_CameraTransform;
 
-    private void Awake()
-    {
+        private Vector2 m_movementInput;
+        public InputActionReference m_movementActionReference;
+        public InputActionReference m_JumpActionReference;
 
-        m_rigidbody = this.GetComponent<Rigidbody>();
+        public bool m_isGrounded;
+        private float jumpRaycastDistance = 0.2f;
+        [SerializeField] private float m_jumpForce = 5f;
+        private float m_jumpCount = 1f;
+        private float m_maxJumpCount = 2f;
 
+        public Transform jumpPoint;
+        //private bool wasGrounded = false; // Add this as a class-level variable
+        [SerializeField] private LayerMask groundLayer;
 
-    }
-    private void CheckGrounded()
-    {
-        RaycastHit hit;
-        m_isGrounded = Physics.Raycast(jumpPoint.position, Vector3.down, out hit, jumpRaycastDistance, groundLayer);
+        StateMachine stateMachine;
 
-
-        if (m_isGrounded == true)
+        private void Update()
         {
-            m_jumpCount = 1;
-            Debug.Log("I am Zero");
+            m_movementInput = m_movementActionReference.action.ReadValue<Vector2>();
         }
 
+        private void Awake()
+        {
+
+            m_rigidbody = this.GetComponent<Rigidbody>();
+            m_animator = this.GetComponent<Animator>();
+
+            stateMachine = new StateMachine();
+
+            // Decalre states 
+            var JumpState = new JumpState(player: this, m_animator);
+            var WalkingState = new WalkingState(player: this, m_animator);
+
+            At(from: WalkingState, to: JumpState, condition: new FuncPredicate(() => );
+            At(from: JumpState, to: WalkingState, condition: new FuncPredicate(() => m_isGrounded == true));
+
+        }
+
+        void At(IState from, IState to, IPredicate condition) => stateMachine.AddTransition(from, to, condition);
+        void Any(IState from, IPredicate condition) => stateMachine.AddAnyTransition(from, condition);
+
+        private void CheckGrounded()
+        {
+            RaycastHit hit;
+            m_isGrounded = Physics.Raycast(jumpPoint.position, Vector3.down, out hit, jumpRaycastDistance, groundLayer);
 
 
-    }
-    private void Start()
-    {
-
-    }
-    private void OnEnable()
-    {
-        m_movementActionReference.action.Enable();
-        m_JumpActionReference.action.Enable();
-        m_JumpActionReference.action.performed += OnJumpp;
-
-    }
-    private void OnDisable()
-    {
-        m_JumpActionReference.action.performed -= OnJumpp;
-        m_movementActionReference.action.Disable();
-        m_JumpActionReference.action.Disable();
-
-    }
+            if (m_isGrounded == true)
+            {
+                m_jumpCount = 1;
+                Debug.Log("I am Zero");
+            }
 
 
-    public void OnJumpp(InputAction.CallbackContext context)
-    {
 
+        }
+        private void Start()
+        {
 
-        if (context.performed && m_jumpCount < m_maxJumpCount)
+        }
+        private void OnEnable()
+        {
+            m_movementActionReference.action.Enable();
+            m_JumpActionReference.action.Enable();
+            m_JumpActionReference.action.performed += OnJumpp;
+
+        }
+        private void OnDisable()
+        {
+            m_JumpActionReference.action.performed -= OnJumpp;
+            m_movementActionReference.action.Disable();
+            m_JumpActionReference.action.Disable();
+
+        }
+
+        public void HandleJump()
         {
             m_rigidbody.AddForce(Vector3.up * m_jumpForce, ForceMode.Impulse);
             m_jumpCount++;
         }
-        Debug.Log(m_jumpCount);
+        public void OnJumpp(InputAction.CallbackContext context)
+        {
+
+
+            if (context.performed && m_jumpCount < m_maxJumpCount)
+            {
+
+            }
+            Debug.Log(m_jumpCount);
+        }
+        public void Walking()
+        {
+            Vector3 forward = m_CameraTransform.forward;
+            Vector3 right = m_CameraTransform.right;
+
+            forward.Normalize();
+            right.Normalize();
+
+            forward.y = 0;
+            right.y = 0;
+            //// Combines the camera orientation and input direction
+            Vector3 moveDirection = (right * m_movementInput.x + forward * m_movementInput.y).normalized;
+
+            m_rigidbody.AddForce(moveDirection * m_moveSpeed, ForceMode.Acceleration);
+        }
+
+        private void FixedUpdate()
+        {
+            CheckGrounded();
+            Walking();
+
+
+
+        }
     }
-    public void Walking()
-    {
-        Vector3 forward = m_CameraTransform.forward;
-        Vector3 right = m_CameraTransform.right;
-
-        forward.Normalize();
-        right.Normalize();
-
-        forward.y = 0;
-        right.y = 0;
-        //// Combines the camera orientation and input direction
-        Vector3 moveDirection = (right * m_movementInput.x + forward * m_movementInput.y).normalized;
-
-        m_rigidbody.AddForce(moveDirection * m_moveSpeed, ForceMode.Acceleration);
-    }
-
-    private void FixedUpdate()
-    {
-        CheckGrounded();
-        Walking();
 
 
-
-    }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-namespace FSM
+namespace EnemyExperimentation
 {
     public class FuncPredicate : IPredicate
     {

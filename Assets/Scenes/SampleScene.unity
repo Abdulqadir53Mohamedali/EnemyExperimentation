@@ -291,19 +291,7 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: OnMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: c4a6de4f-e7a9-40e7-81ba-c43627bd6a2c
     m_ActionName: 'BasicMovment/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
   - m_PersistentCalls:
@@ -350,6 +338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_rigidbody: {fileID: 226329893}
+  m_animator: {fileID: 226329896}
   m_moveSpeed: 20
   m_CameraTransform: {fileID: 2109830507}
   m_movementActionReference: {fileID: 6591941355326305253, guid: afd7d3f9c215bce4da12c9bf5e117f1a, type: 3}
@@ -537,7 +526,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 917a102ee5cf8884caa179f06246ed39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingState: {fileID: 11400000, guid: eefeec1ae4881c5429a7e5180977fb9a, type: 2}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0

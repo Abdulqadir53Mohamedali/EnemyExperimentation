@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-namespace FSM 
+namespace EnemyExperimentation
 {
     public class WalkingState : BaseState
     {
@@ -18,7 +18,7 @@ namespace FSM
         }
         public override void FixedUpdate()
         {
-            ///a
+            player.Walking();
         }
  
     }

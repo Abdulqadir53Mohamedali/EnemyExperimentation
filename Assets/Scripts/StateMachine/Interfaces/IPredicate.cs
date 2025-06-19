@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace FSM
+namespace EnemyExperimentation
 {
     public interface IPredicate
     {

@@ -1,7 +1,7 @@
 using UnityEngine;
- 
 
-namespace FSM
+
+namespace EnemyExperimentation
 {
     // which state we are moving to based on which condition 
     public interface ITransition

@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.XR;
 
-namespace FSM
+namespace EnemyExperimentation
 {
     public class StateMachine
     {

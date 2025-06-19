@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-namespace FSM
+namespace EnemyExperimentation
 {
     public class JumpState : BaseState
     {
@@ -15,7 +15,7 @@ namespace FSM
         }
         public override void FixedUpdate()
         {
-            ///a
+            player.HandleJump();
         }
     }
 }
