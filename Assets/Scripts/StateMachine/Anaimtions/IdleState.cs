@@ -6,16 +6,17 @@ using UnityEngine;
 
 namespace EnemyExperimentation
 {
-    public class WalkingState : BaseState
+    public class IdleState : BaseState
     {
 
 
 
-        public WalkingState(PlayerController player, Animator animator) : base(player, animator) { }
+        public IdleState(PlayerController player, Animator animator) : base(player, animator) { }
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void OnEnter()
         {
-            animator.CrossFade(WalkingHash, crossFadeDuration);
+            Debug.Log("Idle");
+            animator.CrossFade(IdleHash, crossFadeDuration);
 
         }
         public override void FixedUpdate()
@@ -24,17 +25,12 @@ namespace EnemyExperimentation
 
 
 
+            //animator.CrossFade(WalkingHash, crossFadeDuration);
 
-            player.Walking();
+            //player.Walking();
             //animator.CrossFade(WalkingHash, crossFadeDuration);
 
         }
-        //public override void Update()
-        //{
-        //    animator.CrossFade(WalkingHash, crossFadeDuration);
-
-        //}
-
 
     }
 

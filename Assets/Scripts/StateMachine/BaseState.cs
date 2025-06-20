@@ -11,10 +11,11 @@ namespace EnemyExperimentation
 
         protected static readonly int WalkingHash = Animator.StringToHash(name: "Walking");
         protected static readonly int JumpHash = Animator.StringToHash(name: "Jump");
+        protected static readonly int IdleHash = Animator.StringToHash(name: "Idle");
 
         // constant , time it takes to transition to an animation
 
-        protected const float crossFadeDuration = 0.25f;
+        protected const float crossFadeDuration = 0.1f;
 
         protected BaseState(PlayerController player, Animator animator)
         {

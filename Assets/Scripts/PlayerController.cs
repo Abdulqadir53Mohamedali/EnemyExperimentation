@@ -17,7 +17,7 @@ namespace EnemyExperimentation
         public bool m_isGrounded;
         private float jumpRaycastDistance = 0.2f;
         [SerializeField] private float m_jumpForce = 5f;
-        private float m_jumpCount = 1f;
+        private float m_jumpCount = 0f;
         private float m_maxJumpCount = 2f;
 
         public bool m_jumpRequested;
@@ -26,7 +26,12 @@ namespace EnemyExperimentation
         //private bool wasGrounded = false; // Add this as a class-level variable
         [SerializeField] private LayerMask groundLayer;
 
-        StateMachine stateMachine;
+        public StateMachine stateMachine;
+
+        public IdleState IdleState { get; private set; }
+        public WalkingState WalkingState { get; private set; }
+        public JumpState JumpState { get; private set; }
+
 
         private void Update()
         {
@@ -43,13 +48,19 @@ namespace EnemyExperimentation
             stateMachine = new StateMachine();
 
             // Decalre states 
-            var JumpState = new JumpState(player: this, m_animator);
-            var WalkingState = new WalkingState(player: this, m_animator);
+            JumpState = new JumpState(this, m_animator);
+            WalkingState = new WalkingState(this, m_animator);
+            IdleState = new IdleState(this, m_animator);
 
-            At(from: WalkingState, to: JumpState, condition: new FuncPredicate(() => m_jumpRequested == true ));
-            At(from: JumpState, to: WalkingState, condition: new FuncPredicate(() => m_isGrounded == true && m_jumpRequested == false));
+            Any(JumpState, new FuncPredicate(() => m_jumpRequested));
+            //Any(jumpState, () => m_jumpRequested);
+            At(from: WalkingState, to: IdleState, condition: new FuncPredicate(() => m_movementInput.sqrMagnitude == 0.00f && m_isGrounded));
+            At(from: IdleState, to: WalkingState, condition: new FuncPredicate(() => m_movementInput.sqrMagnitude >= 0.01f));
+            //At(from: IdleState, to: JumpState, condition: new FuncPredicate(() => m_jumpRequested == true));
+            //At(from: WalkingState, to: JumpState, condition: new FuncPredicate(() => m_jumpRequested == true ));
+            //At(from: JumpState, to: WalkingState, condition: new FuncPredicate(() => m_isGrounded == true && m_movementInput.sqrMagnitude >= 0.01f));
 
-            stateMachine.SetState(WalkingState);
+            stateMachine.SetState(IdleState);
         }
 
         void At(IState from, IState to, IPredicate condition) => stateMachine.AddTransition(from, to, condition);
@@ -63,7 +74,7 @@ namespace EnemyExperimentation
 
             if (m_isGrounded == true)
             {
-                m_jumpCount = 1;
+                m_jumpCount = 0;
                 //Debug.Log("I am Zero");
             }
 
