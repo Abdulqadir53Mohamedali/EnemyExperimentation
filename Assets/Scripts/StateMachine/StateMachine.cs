@@ -63,10 +63,10 @@ namespace EnemyExperimentation
                 return;
             }
             // if state attempts to transition in to itself then it bails out 
-            if (state == current.State)
-            {
-                return;
-            }
+            //if (state == current.State)
+            //{
+            //    return;
+            //}
 
 
 

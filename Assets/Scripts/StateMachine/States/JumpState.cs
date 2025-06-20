@@ -5,7 +5,7 @@ namespace EnemyExperimentation
 {
     public class JumpState : BaseState
     {
-        const float minAirTime = 0.5f;
+        const float minAirTime = 0.3f;
         float enterTime;
 
         public JumpState(PlayerController player, Animator animator) : base(player, animator) { }

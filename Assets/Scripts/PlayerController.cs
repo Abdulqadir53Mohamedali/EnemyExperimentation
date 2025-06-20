@@ -18,7 +18,7 @@ namespace EnemyExperimentation
         private float jumpRaycastDistance = 0.2f;
         [SerializeField] private float m_jumpForce = 5f;
         private float m_jumpCount = 0f;
-        private float m_maxJumpCount = 2f;
+        private float m_maxJumpCount = 1f;
 
         public bool m_jumpRequested;
 
