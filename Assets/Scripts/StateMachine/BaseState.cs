@@ -14,7 +14,7 @@ namespace EnemyExperimentation
 
         // constant , time it takes to transition to an animation
 
-        protected const float crossFadeDuration = 0.1f;
+        protected const float crossFadeDuration = 0.25f;
 
         protected BaseState(PlayerController player, Animator animator)
         {

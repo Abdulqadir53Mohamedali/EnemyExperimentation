@@ -10,7 +10,7 @@ namespace EnemyExperimentation
         public float m_moveSpeed = 5f;
         [SerializeField] private Transform m_CameraTransform;
 
-        private Vector2 m_movementInput;
+        public  Vector2 m_movementInput;
         public InputActionReference m_movementActionReference;
         public InputActionReference m_JumpActionReference;
 
@@ -19,6 +19,8 @@ namespace EnemyExperimentation
         [SerializeField] private float m_jumpForce = 5f;
         private float m_jumpCount = 1f;
         private float m_maxJumpCount = 2f;
+
+        public bool m_jumpRequested;
 
         public Transform jumpPoint;
         //private bool wasGrounded = false; // Add this as a class-level variable
@@ -29,6 +31,7 @@ namespace EnemyExperimentation
         private void Update()
         {
             m_movementInput = m_movementActionReference.action.ReadValue<Vector2>();
+            stateMachine.Update();
         }
 
         private void Awake()
@@ -43,9 +46,10 @@ namespace EnemyExperimentation
             var JumpState = new JumpState(player: this, m_animator);
             var WalkingState = new WalkingState(player: this, m_animator);
 
-            At(from: WalkingState, to: JumpState, condition: new FuncPredicate(() => );
-            At(from: JumpState, to: WalkingState, condition: new FuncPredicate(() => m_isGrounded == true));
+            At(from: WalkingState, to: JumpState, condition: new FuncPredicate(() => m_jumpRequested == true ));
+            At(from: JumpState, to: WalkingState, condition: new FuncPredicate(() => m_isGrounded == true && m_jumpRequested == false));
 
+            stateMachine.SetState(WalkingState);
         }
 
         void At(IState from, IState to, IPredicate condition) => stateMachine.AddTransition(from, to, condition);
@@ -60,7 +64,7 @@ namespace EnemyExperimentation
             if (m_isGrounded == true)
             {
                 m_jumpCount = 1;
-                Debug.Log("I am Zero");
+                //Debug.Log("I am Zero");
             }
 
 
@@ -89,6 +93,7 @@ namespace EnemyExperimentation
         {
             m_rigidbody.AddForce(Vector3.up * m_jumpForce, ForceMode.Impulse);
             m_jumpCount++;
+            m_jumpRequested = false;
         }
         public void OnJumpp(InputAction.CallbackContext context)
         {
@@ -96,7 +101,8 @@ namespace EnemyExperimentation
 
             if (context.performed && m_jumpCount < m_maxJumpCount)
             {
-
+                Debug.Log("Jump is pressed");
+                m_jumpRequested = true;
             }
             Debug.Log(m_jumpCount);
         }
@@ -119,7 +125,8 @@ namespace EnemyExperimentation
         private void FixedUpdate()
         {
             CheckGrounded();
-            Walking();
+            //Walking();
+            stateMachine.FixedUpdate();
 
 
 

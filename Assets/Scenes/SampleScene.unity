@@ -341,10 +341,12 @@ MonoBehaviour:
   m_animator: {fileID: 226329896}
   m_moveSpeed: 20
   m_CameraTransform: {fileID: 2109830507}
+  m_movementInput: {x: 0, y: 0}
   m_movementActionReference: {fileID: 6591941355326305253, guid: afd7d3f9c215bce4da12c9bf5e117f1a, type: 3}
   m_JumpActionReference: {fileID: -8570666134219445963, guid: afd7d3f9c215bce4da12c9bf5e117f1a, type: 3}
   m_isGrounded: 0
   m_jumpForce: 5
+  m_jumpRequested: 0
   jumpPoint: {fileID: 565115948}
   groundLayer:
     serializedVersion: 2
@@ -1130,7 +1132,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -7.950211, y: 8.592601, z: 26.461298}
-  m_LocalScale: {x: 20.43074, y: 1, z: 29.929106}
+  m_LocalScale: {x: 20.43074, y: 1, z: 52.723114}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 397586347}

@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -15,12 +16,20 @@ namespace EnemyExperimentation
         public override void OnEnter()
         {
             animator.CrossFade(WalkingHash, crossFadeDuration);
+
         }
         public override void FixedUpdate()
         {
+
+
+
+
+
             player.Walking();
+            //animator.CrossFade(WalkingHash, crossFadeDuration);
+
         }
- 
+
     }
 
 

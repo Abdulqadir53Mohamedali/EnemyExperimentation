@@ -53,14 +53,22 @@ namespace EnemyExperimentation
 
         void ChangeState(IState state)
         {
+
+
+            var previousState = current.State;
+            var nextState = nodes[state.GetType()].State;
+
+            if (state == current.State && state.GetType() != typeof(JumpState))
+            {
+                return;
+            }
             // if state attempts to transition in to itself then it bails out 
-            if(state == current.State)
+            if (state == current.State)
             {
                 return;
             }
 
-            var previousState = current.State;
-            var nextState = nodes[state.GetType()].State;
+
 
             previousState?.OnExit();
             nextState?.OnEnter();
