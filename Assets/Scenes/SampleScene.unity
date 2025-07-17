@@ -365,6 +365,7 @@ MonoBehaviour:
   m_animator: {fileID: 226329896}
   m_moveSpeed: 20
   m_CameraTransform: {fileID: 2109830507}
+  shouldFaceMoveDirection: 1
   m_movementInput: {x: 0, y: 0}
   m_movementActionReference: {fileID: 6591941355326305253, guid: afd7d3f9c215bce4da12c9bf5e117f1a, type: 3}
   m_JumpActionReference: {fileID: -8570666134219445963, guid: afd7d3f9c215bce4da12c9bf5e117f1a, type: 3}
@@ -467,8 +468,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2534013, y: 0.00000002274931, z: -0.0000000059592065, w: 0.9673613}
-  m_LocalPosition: {x: -7.36, y: 3.987, z: -27.58}
+  m_LocalRotation: {x: 0.1521234, y: -3.0243536e-15, z: 4.654926e-16, w: 0.98836154}
+  m_LocalPosition: {x: -7.36, y: 4.744058, z: -33.11717}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1691,6 +1692,7 @@ GameObject:
   - component: {fileID: 2109830505}
   - component: {fileID: 2109830504}
   - component: {fileID: 2109830503}
+  - component: {fileID: 2109830508}
   - component: {fileID: 2109830502}
   m_Layer: 0
   m_Name: FreeLook Camera
@@ -1821,7 +1823,7 @@ MonoBehaviour:
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
-  OrbitStyle: 1
+  OrbitStyle: 0
   Radius: 10
   Orbits:
     Top:
@@ -1916,13 +1918,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2109830501}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2534013, y: 0.000000021010456, z: 6.788788e-10, w: 0.9673613}
-  m_LocalPosition: {x: -7.36, y: 3.987, z: -27.58}
+  m_LocalRotation: {x: 0.1521234, y: -2.92821e-15, z: -1.5916128e-16, w: 0.98836154}
+  m_LocalPosition: {x: -7.36, y: 4.744058, z: -33.11717}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2109830508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109830501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925940b227e1a8c46b677a8736fff587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomSpeed: 2
+  zoomLerpSpeed: 10
+  minDistance: 3
+  maxDistance: 15
 --- !u!1001 &5887639325511688343
 PrefabInstance:
   m_ObjectHideFlags: 0

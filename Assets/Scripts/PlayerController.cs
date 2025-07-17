@@ -5,10 +5,13 @@ namespace EnemyExperimentation
 {
     public class PlayerController : MonoBehaviour
     {
+
+
         public Rigidbody m_rigidbody;
         public Animator m_animator;
         public float m_moveSpeed = 5f;
         [SerializeField] private Transform m_CameraTransform;
+        [SerializeField] private bool shouldFaceMoveDirection = false;
 
         public  Vector2 m_movementInput;
         public InputActionReference m_movementActionReference;
@@ -131,6 +134,13 @@ namespace EnemyExperimentation
             Vector3 moveDirection = (right * m_movementInput.x + forward * m_movementInput.y).normalized;
 
             m_rigidbody.AddForce(moveDirection * m_moveSpeed, ForceMode.Acceleration);
+
+
+            if(shouldFaceMoveDirection && moveDirection.sqrMagnitude > 0.001f)
+            {
+                Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, toRotation,10f * Time.deltaTime);
+            }
         }
 
         private void FixedUpdate()
