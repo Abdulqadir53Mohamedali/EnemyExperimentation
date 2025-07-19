@@ -143,6 +143,7 @@ namespace EnemyExperimentation
             }
         }
 
+
         private void FixedUpdate()
         {
             CheckGrounded();

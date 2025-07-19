@@ -11,6 +11,7 @@ namespace EnemyExperimentation
         [SerializeField] NavMeshAgent agent;
         [SerializeField] Animator animator;
 
+        [SerializeField] float wanderRadius = 10f;
         StateMachine stateMachine;
 
 
@@ -24,7 +25,7 @@ namespace EnemyExperimentation
             stateMachine = new StateMachine();
 
 
-            var WonderState = new EnemyWonderState(enemy: this, animator, agent, 5f);
+            var WonderState = new EnemyWonderState(enemy: this, animator, agent, wanderRadius);
 
 
             Any(WonderState, new FuncPredicate(() => true));
