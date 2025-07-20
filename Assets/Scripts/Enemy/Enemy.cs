@@ -6,9 +6,11 @@ using UnityEngine.AI;
 namespace EnemyExperimentation
 {
     [RequireComponent(typeof(NavMeshAgent))]
+    [RequireComponent(typeof(PlayerDetector))]
     public class Enemy : Entity 
     {
         [SerializeField] NavMeshAgent agent;
+        [SerializeField] PlayerDetector playerDetector; 
         [SerializeField] Animator animator;
 
         [SerializeField] float wanderRadius = 10f;
@@ -21,15 +23,18 @@ namespace EnemyExperimentation
 
         protected override void Start()
         {
-            base.Start();
+            //base.Start();
             stateMachine = new StateMachine();
 
 
             var wonderState = new EnemyWonderState(enemy: this, animator, agent, wanderRadius);
-            var chaseState = new EnemyChaseState(this, animator, agent, player);
+            var chaseState = new EnemyChaseState(this, animator, agent,playerDetector.Player);
 
 
-            Any(wonderState, new FuncPredicate(() => true));
+            At(wonderState, chaseState, new FuncPredicate(() => playerDetector.CanDetectPlayer()));
+            At(chaseState, wonderState, new FuncPredicate(() => !playerDetector.CanDetectPlayer()));
+
+            //Any(wonderState, new FuncPredicate(() => true));
             stateMachine.SetState(wonderState);
         }
 

@@ -119,30 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &12249845 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5452140026834301198, guid: 5ee6dfd3e0b62814e9f76f61e8980f1e, type: 3}
-  m_PrefabInstance: {fileID: 5887639325511688343}
-  m_PrefabAsset: {fileID: 0}
---- !u!195 &12249846 stripped
-NavMeshAgent:
-  m_CorrespondingSourceObject: {fileID: 8623433459598226736, guid: 5ee6dfd3e0b62814e9f76f61e8980f1e, type: 3}
-  m_PrefabInstance: {fileID: 5887639325511688343}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &12249848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 12249845}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e8e33c6e5fcbdd4292914dbee9f68c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 12249846}
-  animator: {fileID: 268696657}
 --- !u!1 &226329888
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +137,7 @@ GameObject:
   - component: {fileID: 226329897}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -376,11 +352,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
---- !u!95 &268696657 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 2734583085714430788, guid: 5ee6dfd3e0b62814e9f76f61e8980f1e, type: 3}
-  m_PrefabInstance: {fileID: 5887639325511688343}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1949,18 +1920,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 173642401710652545, guid: 5ee6dfd3e0b62814e9f76f61e8980f1e, type: 3}
-      propertyPath: m_Radius
-      value: 0.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 1917089473867008825, guid: 5ee6dfd3e0b62814e9f76f61e8980f1e, type: 3}
-      propertyPath: m_Name
-      value: PatrolLight
-      objectReference: {fileID: 0}
-    - target: {fileID: 3241035605582890659, guid: 5ee6dfd3e0b62814e9f76f61e8980f1e, type: 3}
-      propertyPath: m_Name
-      value: arm2
-      objectReference: {fileID: 0}
     - target: {fileID: 4949426713619746629, guid: 5ee6dfd3e0b62814e9f76f61e8980f1e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.4799995
@@ -2005,21 +1964,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 8356622596660544725, guid: 5ee6dfd3e0b62814e9f76f61e8980f1e, type: 3}
-      propertyPath: m_Name
-      value: arm1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8623433459598226736, guid: 5ee6dfd3e0b62814e9f76f61e8980f1e, type: 3}
-      propertyPath: m_Radius
-      value: 0.64
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5452140026834301198, guid: 5ee6dfd3e0b62814e9f76f61e8980f1e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 12249848}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ee6dfd3e0b62814e9f76f61e8980f1e, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

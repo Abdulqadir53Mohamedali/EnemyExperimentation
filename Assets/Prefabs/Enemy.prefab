@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5858023442408596539}
   - component: {fileID: 446290921878302375}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: PatrolLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 4475679736448522815}
   - component: {fileID: 1720108738404270567}
   m_Layer: 0
-  m_Name: a (1)
+  m_Name: arm2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -204,6 +204,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4949426713619746629}
   - component: {fileID: 8623433459598226736}
+  - component: {fileID: 5651659802056096428}
+  - component: {fileID: 6582235857190274825}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -219,7 +221,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5452140026834301198}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.4799995, y: 1.5100002, z: -10.010002}
   m_LocalScale: {x: 1, y: 1.2872, z: 1}
   m_ConstrainProportionsScale: 0
@@ -236,7 +238,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 5452140026834301198}
   m_Enabled: 1
   m_AgentTypeID: -1372625422
-  m_Radius: 0.5
+  m_Radius: 0.64
   m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
@@ -249,6 +251,38 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5651659802056096428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5452140026834301198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8e33c6e5fcbdd4292914dbee9f68c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 8623433459598226736}
+  playerDetector: {fileID: 6582235857190274825}
+  animator: {fileID: 2734583085714430788}
+  wanderRadius: 10
+--- !u!114 &6582235857190274825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5452140026834301198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90a93250e70b64d468d4a2e2c2fd5f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionAngle: 60
+  detectionRadius: 8
+  innerDetectionRadius: 2
+  detectionCooldown: 1
 --- !u!1 &6642652773136880935
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,7 +475,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.59
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -457,7 +491,7 @@ GameObject:
   - component: {fileID: 7423226451593772025}
   - component: {fileID: 1524373909153260017}
   m_Layer: 0
-  m_Name: a
+  m_Name: arm1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
