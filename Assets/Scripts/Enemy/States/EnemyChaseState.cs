@@ -1,20 +1,32 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace EnemyExperimentation
 {
-    //public class EnemyChaseState : EnemyBaseState
-    //{
-    //    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    //    void Start()
-    //    {
+    public class EnemyChaseState : EnemyBaseState
+    {
+        readonly NavMeshAgent agent;
+        readonly Transform player;
+        public EnemyChaseState(Enemy enemy, Animator animator, NavMeshAgent agent, Transform player) : base(enemy, animator)
+        {
+            this.agent = agent;
+            this.player = player;
 
-    //    }
 
-    //    // Update is called once per frame
-    //    void Update()
-    //    {
+        }
 
-    //    }
-    //}
+
+        public override void OnEnter()
+        {
+            Debug.Log("Wondering");
+            animator.CrossFade(ChaseHash, crossFadeDuration);
+        }
+
+
+        public override void Update()
+        {
+            agent.SetDestination(player.position);
+        }
+    }
 
 }

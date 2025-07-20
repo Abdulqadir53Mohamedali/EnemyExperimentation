@@ -25,11 +25,12 @@ namespace EnemyExperimentation
             stateMachine = new StateMachine();
 
 
-            var WonderState = new EnemyWonderState(enemy: this, animator, agent, wanderRadius);
+            var wonderState = new EnemyWonderState(enemy: this, animator, agent, wanderRadius);
+            var chaseState = new EnemyChaseState(this, animator, agent, player);
 
 
-            Any(WonderState, new FuncPredicate(() => true));
-            stateMachine.SetState(WonderState);
+            Any(wonderState, new FuncPredicate(() => true));
+            stateMachine.SetState(wonderState);
         }
 
         void At(IState from , IState to, IPredicate condition) => stateMachine.AddTransition(from, to, condition);
