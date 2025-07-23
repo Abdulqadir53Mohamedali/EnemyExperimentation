@@ -901,7 +901,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -7.950211, y: 8.592601, z: 26.461298}
-  m_LocalScale: {x: 20.43074, y: 1, z: 52.723114}
+  m_LocalScale: {x: 20.43074, y: 1, z: 28.15309}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 397586347}
@@ -1367,7 +1367,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -9.535083, y: 9.593607, z: 36.5533}
-  m_LocalScale: {x: 4.7445, y: 4.7138, z: 1}
+  m_LocalScale: {x: 11.241143, y: 4.7138, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 397586347}
@@ -1964,9 +1964,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5651659802056096428, guid: 5ee6dfd3e0b62814e9f76f61e8980f1e, type: 3}
+      propertyPath: wanderRadius
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582235857190274825, guid: 5ee6dfd3e0b62814e9f76f61e8980f1e, type: 3}
+      propertyPath: detectionAngle
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582235857190274825, guid: 5ee6dfd3e0b62814e9f76f61e8980f1e, type: 3}
+      propertyPath: detectionRadius
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6582235857190274825, guid: 5ee6dfd3e0b62814e9f76f61e8980f1e, type: 3}
       propertyPath: detectionCooldown
-      value: 4
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582235857190274825, guid: 5ee6dfd3e0b62814e9f76f61e8980f1e, type: 3}
+      propertyPath: innerDetectionRadius
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

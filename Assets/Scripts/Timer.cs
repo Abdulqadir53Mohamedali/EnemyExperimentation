@@ -29,6 +29,7 @@ namespace Utilities
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public void Start()
         {
+            
             Time = initialTime;
             
             if (!IsRunning)
@@ -42,11 +43,11 @@ namespace Utilities
         {
             Time = initialTime;
             
-            if (!IsRunning)
-            {
-                IsRunning = true;
-                onTimerStop.Invoke();
-            }
+       
+            
+            IsRunning = false;
+            onTimerStop.Invoke();
+            
         }
 
         public void Resume() => IsRunning = true;

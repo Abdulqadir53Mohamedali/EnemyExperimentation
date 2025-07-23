@@ -35,8 +35,22 @@ namespace EnemyExperimentation
 
         public bool CanDetectPlayer()
         {
-            return detectionTimer.IsRunning || detectionStratergy.Execute(Player,transform,detectionTimer);
+            bool detected = detectionStratergy.Execute(Player, transform, detectionTimer);
+
+            if (detected && !detectionTimer.IsRunning)
+            {
+                detectionTimer.Start();
+                // Optional: Play sound, trigger animation, etc.
+            }
+
+            return detected;
         }
+
+        //public bool CanDetectPlayer()
+        //{
+        //    return detectionTimer.IsRunning || detectionStratergy.Execute(Player, transform, detectionTimer);
+        //}
+
         public void SetDetectionStrategy(IDetectionStrategy detectionStrategy) => this.detectionStratergy = detectionStratergy;
     }
 
