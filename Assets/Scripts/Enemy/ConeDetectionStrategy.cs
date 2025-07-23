@@ -30,7 +30,7 @@ namespace EnemyExperimentation
             //IF the player is not within the detector angle + outer radius (aka the cone in front of the enemy)
             // or is within the inner radius , return false
 
-            if(!(angleToPlayer < detectionAngle / 2f || !(directionToPlayer.magnitude < detectionRadius)) && !(directionToPlayer.magnitude < innerDetectionRadius))
+            if(!(angleToPlayer < detectionAngle / 2f) || !(directionToPlayer.magnitude < detectionRadius) && !(directionToPlayer.magnitude < innerDetectionRadius))
             {
                 return false;
             }

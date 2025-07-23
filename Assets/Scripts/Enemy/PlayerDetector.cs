@@ -27,6 +27,7 @@ namespace EnemyExperimentation
         {
             detectionTimer = new CountDownTimer(detectionCooldown);
             Player = GameObject.FindWithTag("Player").transform;
+            detectionStratergy = new ConeDetectionStrategy(detectionAngle, detectionRadius, innerDetectionRadius);
         }
 
         // Update is called once per frame
