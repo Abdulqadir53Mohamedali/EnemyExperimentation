@@ -17,42 +17,42 @@ namespace EnemyExperimentation
             this.innerDetectionRadius = innerDetectionRadius;
 
         }
+        //public bool Execute(Transform player, Transform detector, CountDownTimer timer)
+        //{
+        //    var directionToPlayer = player.position - detector.position;
+        //    var angleToPlayer = Vector3.Angle(directionToPlayer, detector.forward);
+
+        //    if (!(angleToPlayer < detectionAngle / 2f) ||
+        //        !(directionToPlayer.magnitude < detectionRadius) ||
+        //        (directionToPlayer.magnitude < innerDetectionRadius))
+        //    {
+        //        return false;
+        //    }
+
+        //    return true;
+        //}
+
         public bool Execute(Transform player, Transform detector, CountDownTimer timer)
         {
-            var directionToPlayer = player.position - detector.position;
-            var angleToPlayer = Vector3.Angle(directionToPlayer, detector.forward);
-
-            if (!(angleToPlayer < detectionAngle / 2f) ||
-                !(directionToPlayer.magnitude < detectionRadius) ||
-                (directionToPlayer.magnitude < innerDetectionRadius))
+            if (timer.IsRunning)
             {
                 return false;
             }
 
+            var directionToPlayer = player.position - detector.position;
+            var angleToPlayer = Vector3.Angle(directionToPlayer, detector.forward);
+
+            //IF the player is not within the detector angle + outer radius (aka the cone in front of the enemy)
+            // or is within the inner radius , return false
+
+            if (!(angleToPlayer < detectionAngle / 2f) || !(directionToPlayer.magnitude < detectionRadius) && !(directionToPlayer.magnitude < innerDetectionRadius))
+            {
+                return false;
+            }
+
+            timer.Start();
             return true;
         }
-
-        //public bool Execute(Transform player, Transform detector, CountDownTimer timer)
-        //{
-        //    if (timer.IsRunning)
-        //    {
-        //        return false;
-        //    }
-
-        //    var directionToPlayer = player.position - detector.position;
-        //    var angleToPlayer = Vector3.Angle(directionToPlayer, detector.forward);
-
-        //    //IF the player is not within the detector angle + outer radius (aka the cone in front of the enemy)
-        //    // or is within the inner radius , return false
-
-        //    if (!(angleToPlayer < detectionAngle / 2f) || !(directionToPlayer.magnitude < detectionRadius) && !(directionToPlayer.magnitude < innerDetectionRadius))
-        //    {
-        //        return false;
-        //    }
-
-        //    timer.Start();
-        //    return true;
-        //}
 
     }
 

@@ -14,6 +14,7 @@ namespace EnemyExperimentation
         protected static readonly int PatrollingHash = Animator.StringToHash(name: "Patrolling");
         protected static readonly int ChaseHash = Animator.StringToHash(name: "ChasingPlayer");
         protected static readonly int IdleHash = Animator.StringToHash(name: "Idle");
+        protected static readonly int AttackHash = Animator.StringToHash(name: "Attack");
         protected EnemyBaseState(Enemy enemy, Animator animator)
         {
             this.enemy = enemy;
